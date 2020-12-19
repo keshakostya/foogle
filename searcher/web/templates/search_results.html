@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Search results{% endblock %}
+
+{% block content %}
+<h3><a href="{{ url_for('main') }}">Back</a></h3>
+{% if search_results %}
+<div>
+    {% for result in search_results %}
+    {% if result %}
+    <div>
+        <h3>For {{ result.query }} found:</h3>
+        {% for doc in result.documents %}
+        <p>{{ doc }}</p>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div>
+        <h3>For {{ result.query }} found nothing :(</h3>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

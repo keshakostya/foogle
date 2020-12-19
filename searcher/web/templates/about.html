@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Search engine{% endblock %}
+
+{% block content %}
+<h1>About page</h1>
+<h2>Search engine</h2>
+<p>
+    This is a search engine, thats searches local files
+    by its content. You can search with queries with logical operators.
+    You can save and load index, that was built.
+</p>
+<h2>Technology</h2>
+<p>
+    This search engine is written in Python. For web interface it uses
+    Flask (NO Javascript, pure Python).
+    Engine searches with Tf-Idf metric(https://en.wikipedia.org/wiki/Tf%E2%80%93idf) to score documents.
+</p>
+<h3><a href="{{ url_for('main') }}">Back</a></h3>
+{% endblock %}

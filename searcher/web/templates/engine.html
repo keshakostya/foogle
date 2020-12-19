@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Search engine{% endblock %}
+
+{% block content %}
+<div id="index-block">
+    <h2>Index</h2>
+    <h3>Load or save existing index</h3>
+    <div id="index-exist-buttons">
+        <a href="{{ url_for('load_index') }}">
+            <button>Load index</button>
+        </a>
+        <a href="{{ url_for('save_index') }}">
+            <button>Save index</button>
+        </a>
+    </div>
+    <h3>Or create new</h3>
+    <form method="POST" action="build_index" id="index-create-form">
+        <label for="root-dir">Root directory of your index:</label>
+        <input required placeholder="Root directory" type="text" id="root-dir"
+               name="root_dir">
+
+        <label for="robot-txt">Path to robot.txt file(may leave
+            empty):</label>
+        <input type="text" id="robot-txt" name="robot_txt"
+               placeholder="Path to robot.txt file">
+
+        <input type="submit" value="Build index" name="build_index">
+        <input type="reset" value="Clear" class="danger">
+    </form>
+    {% if index_status %}
+    <p id="index-status">{{ index_status }}</p>
+    {% endif %}
+</div>
+<div id="search-block">
+    <h2>Search</h2>
+    <form method="POST" action="search" id="search-form">
+        <label for="query">Your query:</label>
+        <input required placeholder="Query" type="text" id="query"
+               name="query">
+
+        <input type="submit" value="Search" name="search">
+        <input type="reset" value="Clear">
+    </form>
+</div>
+<footer id="footer-block">
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="https://github.com/keshakostya/foogle">Github</a>
+</footer>
+{% endblock %}
