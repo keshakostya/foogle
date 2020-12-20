@@ -1,12 +1,14 @@
+import dataclasses
 import os
 from pathlib import Path
-import dataclasses
 
 import pytest
 
 from searcher.engine.query_parser import Query
 from searcher.engine.search_engine import SearchEngine, \
     SearchByManyQueriesResult, SearchByOneQueryResult
+from searcher.errors.errors import IndexNotExistError, IndexEmptyError, \
+    RobotTxtNotFound, InvalidRootDirectory
 
 
 @pytest.fixture
@@ -54,3 +56,25 @@ def test_save_load(search_engine, norm_cwd):
     search_engine.load_index()
     assert index == search_engine.index
     index_path.unlink()
+
+
+def test_engine_load_error(search_engine):
+    with pytest.raises(IndexNotExistError):
+        search_engine.load_index()
+
+
+def test_engine_search_error(search_engine):
+    with pytest.raises(IndexEmptyError):
+        search_engine.search('a')
+
+
+@pytest.mark.parametrize(
+    'search_arg, expected_error',
+    [
+        (('./', 'wrong_path'), RobotTxtNotFound),
+        (('wrong_path', 'robot.txt'), InvalidRootDirectory)
+    ]
+)
+def test_engine_search_build(search_engine, search_arg, expected_error):
+    with pytest.raises(expected_error):
+        search_engine.build_index(*search_arg)

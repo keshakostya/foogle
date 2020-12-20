@@ -1,6 +1,7 @@
 import pytest
 
 from searcher.engine.query_parser import QueryParser, Query
+from searcher.errors.errors import QueryError
 
 
 @pytest.mark.parametrize(
@@ -13,3 +14,15 @@ from searcher.engine.query_parser import QueryParser, Query
 )
 def test_queries(raw_query, expected_queries):
     assert set(QueryParser.parse_query(raw_query)) == set(expected_queries)
+
+
+@pytest.mark.parametrize(
+    'query',
+    [
+        'Hello world',
+        'hello && -hello'
+     ]
+)
+def test_query_error(query):
+    with pytest.raises(QueryError):
+        QueryParser.parse_query(query)
