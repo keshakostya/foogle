@@ -10,7 +10,7 @@
 
 ```bash
 $ git clone https://github.com/keshakostya/searcher.git
-$ pip install foogle
+$ pip install searcher
 ```
 
 ## Принцип работы
