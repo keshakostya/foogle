@@ -1,6 +1,7 @@
 import collections
 import math
 import pickle
+import queue
 import re
 import time
 from dataclasses import dataclass
@@ -256,6 +257,7 @@ class SearchEngine:
             raise RobotTxtNotFound(robot_txt)
         ignored = set()
         cwd = Path.cwd()
+        dirs = queue.Queue()
         with robot_txt_path.open('r') as f:
             while True:
                 line = f.readline()
@@ -266,6 +268,15 @@ class SearchEngine:
                 for path in cwd.rglob(line):
                     if not path.is_dir():
                         ignored.add(path)
+                    else:
+                        dirs.put(path)
+        while not dirs.empty():
+            directory = dirs.get()
+            for path in directory.glob('*'):
+                if path.is_dir():
+                    dirs.put(path)
+                else:
+                    ignored.add(path)
         return ignored
 
     @staticmethod
