@@ -2,7 +2,7 @@ from typing import Union
 
 from foogle.engine.search_engine import SearchEngine, \
     SearchByManyQueriesResult
-from foogle.errors.errors import SearcherError
+from foogle.engine.errors import SearcherError
 
 
 class Controller:

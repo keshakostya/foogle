@@ -25,7 +25,7 @@ class IndexOutDatedError(SearcherError):
     def __init__(self, msg: str):
         self.message = self.message.format(msg)
 
-    message = 'error: your index for "{}" is outdated, it was deleted,' \
+    message = 'error: your index for "{}" is outdated' \
               ' please, create new index'
 
 

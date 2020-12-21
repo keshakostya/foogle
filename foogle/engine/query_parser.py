@@ -3,7 +3,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Set, List, Optional
 
-from foogle.errors.errors import QueryError
+from foogle.engine.errors import QueryError
 
 
 @dataclass

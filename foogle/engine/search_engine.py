@@ -11,7 +11,7 @@ from typing import Generator, Set, Dict, List, Tuple, Counter, Optional
 import magic
 
 from foogle.engine.query_parser import Query, QueryParser
-from foogle.errors.errors import IndexEmptyError, IndexBrokenError, \
+from foogle.engine.errors import IndexEmptyError, IndexBrokenError, \
     IndexNotExistError, IndexOutDatedError, InvalidRootDirectory, \
     RobotTxtNotFound
 
@@ -101,7 +101,6 @@ class SearchEngine:
                 index: Index = pickle.loads(raw_index)
                 if index.mtime < index.root_path.stat().st_mtime:
                     root_path = index.root_path
-                    index_path.unlink()
                     raise IndexOutDatedError(str(root_path))
                 self.index = index
         except (AssertionError, pickle.PickleError):

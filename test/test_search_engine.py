@@ -7,7 +7,7 @@ import pytest
 from foogle.engine.query_parser import Query
 from foogle.engine.search_engine import SearchEngine, \
     SearchByManyQueriesResult, SearchByOneQueryResult
-from foogle.errors.errors import IndexNotExistError, IndexEmptyError, \
+from foogle.engine.errors import IndexNotExistError, IndexEmptyError, \
     RobotTxtNotFound, InvalidRootDirectory
 
 

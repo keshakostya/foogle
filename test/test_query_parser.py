@@ -1,7 +1,7 @@
 import pytest
 
 from foogle.engine.query_parser import QueryParser, Query
-from foogle.errors.errors import QueryError
+from foogle.engine.errors import QueryError
 
 
 @pytest.mark.parametrize(

@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import pytest
 
-from foogle.controller.controller import Controller
+from foogle.engine.controller import Controller
 from foogle.engine.query_parser import Query
 from foogle.engine.search_engine import SearchByManyQueriesResult, \
     SearchByOneQueryResult
