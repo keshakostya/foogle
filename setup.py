@@ -7,7 +7,7 @@ with open("requirements.txt") as f:
     requirements = [x.strip() for x in f]
 
 setuptools.setup(
-    name='searcher',
+    name='foogle',
     version='0.1',
     author='Konstantin Kozlov',
     description='Search engine',

@@ -10,7 +10,7 @@
 
 ```bash
 $ git clone https://github.com/keshakostya/searcher.git
-$ pip install searcher
+$ pip install foogle
 ```
 
 ## Принцип работы
@@ -21,7 +21,7 @@ $ pip install searcher
 Чтобы открыть помощь
 
 ```bash
-$ python3 -m searcher -h
+$ python3 -m foogle -h
 ```
 
 ## Запустить тесты
@@ -33,7 +33,7 @@ $ python3 -m pytest
 ## Пример использования
 
 ```bash
-$ python -m searcher cli
+$ python -m foogle cli
 Welcome to search engine shell.
 Type help or ? to list commands.
 Type ? "command", to see help for command
