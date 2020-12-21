@@ -9,7 +9,7 @@
 Рекомендую все делать в виртуальном окружении
 
 ```bash
-$ git clone https://github.com/keshakostya/searcher.git
+$ git clone https://github.com/keshakostya/foogle.git
 $ pip install foogle
 ```
 
