@@ -33,7 +33,7 @@ $ python3 -m pytest
 ## Пример использования
 
 ```bash
-$ python -m foogle cli
+$ python -m foogle.cli
 Welcome to search engine shell.
 Type help or ? to list commands.
 Type ? "command", to see help for command
