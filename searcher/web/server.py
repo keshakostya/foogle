@@ -41,6 +41,9 @@ def create_server():
         if request.method == 'POST':
             query = request.form['query']
             res = controller.execute('search', query)
+            print(res)
+            if isinstance(res, str) and res.startswith('error'):
+                return render_template('engine.html', search_status=res)
         return render_template('search_results.html', search_results=res)
 
     @server.route('/about')

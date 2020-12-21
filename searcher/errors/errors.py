@@ -4,10 +4,7 @@ class SearcherError(Exception):
 
 class QueryError(SearcherError):
 
-    def __init__(self, msg: str):
-        self.message = self.message.format(msg)
-
-    message = 'error: this query string "{}" is wrong'
+    message = 'error: query string is wrong'
 
 
 class IndexEmptyError(SearcherError):
