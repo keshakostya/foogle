@@ -1,8 +1,8 @@
 from typing import Union
 
-from searcher.engine.search_engine import SearchEngine, \
+from foogle.engine.search_engine import SearchEngine, \
     SearchByManyQueriesResult
-from searcher.errors.errors import SearcherError
+from foogle.errors.errors import SearcherError
 
 
 class Controller:

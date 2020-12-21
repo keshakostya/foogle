@@ -1,7 +1,7 @@
 import argparse
 
-from searcher.web.server import create_server
-from searcher.cli.cli import SearchEngineShell
+from foogle.web.server import create_server
+from foogle.cli.cli import SearchEngineShell
 
 
 def parse_args():

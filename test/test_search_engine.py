@@ -4,10 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from searcher.engine.query_parser import Query
-from searcher.engine.search_engine import SearchEngine, \
+from foogle.engine.query_parser import Query
+from foogle.engine.search_engine import SearchEngine, \
     SearchByManyQueriesResult, SearchByOneQueryResult
-from searcher.errors.errors import IndexNotExistError, IndexEmptyError, \
+from foogle.errors.errors import IndexNotExistError, IndexEmptyError, \
     RobotTxtNotFound, InvalidRootDirectory
 
 

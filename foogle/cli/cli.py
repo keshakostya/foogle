@@ -1,6 +1,6 @@
 import cmd
 
-from searcher.controller.controller import Controller
+from foogle.controller.controller import Controller
 
 
 class SearchEngineShell(cmd.Cmd):

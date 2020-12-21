@@ -1,3 +1,3 @@
 [tool.coverage.run]
-source = ['searcher']
+source = ['foogle']
 omit = ['*/__main__.py', '.venv/', '*/server.py', '*/cli.py']

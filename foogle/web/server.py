@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from searcher.controller.controller import Controller
+from foogle.controller.controller import Controller
 
 
 def create_server():

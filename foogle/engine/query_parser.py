@@ -3,7 +3,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Set, List, Optional
 
-from searcher.errors.errors import QueryError
+from foogle.errors.errors import QueryError
 
 
 @dataclass

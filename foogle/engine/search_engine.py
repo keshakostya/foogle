@@ -10,8 +10,8 @@ from typing import Generator, Set, Dict, List, Tuple, Counter, Optional
 
 import magic
 
-from searcher.engine.query_parser import Query, QueryParser
-from searcher.errors.errors import IndexEmptyError, IndexBrokenError, \
+from foogle.engine.query_parser import Query, QueryParser
+from foogle.errors.errors import IndexEmptyError, IndexBrokenError, \
     IndexNotExistError, IndexOutDatedError, InvalidRootDirectory, \
     RobotTxtNotFound
 
