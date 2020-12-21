@@ -20,29 +20,21 @@ from searcher.errors.errors import IndexEmptyError, IndexBrokenError, \
 class Index:
     root_path: Path
     mtime: float
-    documents_to_terms: Dict
-    terms_to_documents: Dict
-    tf_idf: Dict
+    documents_to_terms: Dict[Path, Counter[str]]
+    terms_to_documents: Dict[str, List[Path]]
+    tf_idf: Dict[Path, Dict[str, float]]
 
     @property
-    def unique_terms(self) -> Set:
+    def unique_terms(self) -> Set[str]:
         return set(self.terms_to_documents.keys())
 
     @property
-    def documents(self) -> Set:
+    def documents(self) -> Set[Path]:
         return set(self.documents_to_terms)
 
     @property
     def collection_size(self) -> int:
         return len(self.documents_to_terms)
-
-    @property
-    def is_empty(self) -> bool:
-        return not (self.root_path
-                    and self.mtime
-                    and self.documents_to_terms
-                    and self.terms_to_documents
-                    and self.tf_idf)
 
 
 @dataclass
