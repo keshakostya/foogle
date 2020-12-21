@@ -92,18 +92,18 @@ class SearchEngine:
             raise IndexEmptyError()
 
     def load_index(self):
-        index_path = Path('index').absolute()
+        index_path = Path('search_index').absolute()
         try:
             with index_path.open('rb') as f:
                 check_sum = f.read(16)
                 raw_index = f.read()
                 assert check_sum == self.calc_md5(raw_index)
-                self.index: Index = pickle.loads(raw_index)
-                if self.index.mtime < self.index.root_path.stat().st_mtime:
-                    root_path = self.index.root_path
-                    self.index = None
+                index: Index = pickle.loads(raw_index)
+                if index.mtime < index.root_path.stat().st_mtime:
+                    root_path = index.root_path
                     index_path.unlink()
                     raise IndexOutDatedError(str(root_path))
+                self.index = index
         except (AssertionError, pickle.PickleError):
             index_path.unlink()
             raise IndexBrokenError()
@@ -112,7 +112,7 @@ class SearchEngine:
 
     def save_index(self):
         self.check_index_exist()
-        index_path = Path('index').absolute()
+        index_path = Path('search_index').absolute()
         pickled_index = pickle.dumps(self.index)
         check_sum = self.calc_md5(pickled_index)
         with index_path.open('wb') as f:

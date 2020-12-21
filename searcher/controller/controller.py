@@ -1,4 +1,7 @@
-from searcher.engine.search_engine import SearchEngine
+from typing import Union
+
+from searcher.engine.search_engine import SearchEngine, \
+    SearchByManyQueriesResult
 from searcher.errors.errors import SearcherError
 
 
@@ -7,29 +10,30 @@ class Controller:
     def __init__(self):
         self.engine = SearchEngine()
         self.commands = {
-            'search': self._search,
-            'build_index': self._build_index,
-            'load_index': self._load_index,
-            'save_index': self._save_index
+            'search': self.__search,
+            'build_index': self.__build_index,
+            'load_index': self.__load_index,
+            'save_index': self.__save_index
         }
 
-    def execute(self, command: str, *args):
+    def execute(self, command: str, *args) -> \
+            Union[SearchByManyQueriesResult, str]:
         try:
             return self.commands[command](*args)
         except SearcherError as e:
             return e.message
 
-    def _search(self, query: str):
+    def __search(self, query: str) -> SearchByManyQueriesResult:
         return self.engine.search(query)
 
-    def _build_index(self, root_dir: str, robot_txt: str = ''):
+    def __build_index(self, root_dir: str, robot_txt: str = '') -> str:
         self.engine.build_index(root_dir, robot_txt)
         return f'Index built for "{self.engine.index.root_path}"'
 
-    def _load_index(self):
+    def __load_index(self) -> str:
         self.engine.load_index()
         return f'Index for {self.engine.index.root_path} loaded'
 
-    def _save_index(self):
+    def __save_index(self) -> str:
         self.engine.save_index()
         return f'Index for {self.engine.index.root_path} saved'

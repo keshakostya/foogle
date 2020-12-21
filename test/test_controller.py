@@ -27,7 +27,7 @@ def test_controller(controller, norm_cwd):
     assert res == f'Index built for "{test_files_path}"'
     res = controller.execute('save_index')
     assert res == f'Index for {test_files_path} saved'
-    index_path = norm_cwd / 'index'
+    index_path = norm_cwd / 'search_index'
     assert index_path.exists()
     res = controller.execute('load_index')
     assert res == f'Index for {test_files_path} loaded'

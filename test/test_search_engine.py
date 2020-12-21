@@ -27,7 +27,7 @@ def search_engine():
 
 def test_search(search_engine, norm_cwd):
     test_files = norm_cwd / 'test_files'
-    search_engine.build_index(test_files, '')
+    search_engine.build_index(str(test_files), '')
     results = search_engine.search('lorem || lingues')
     expected = SearchByManyQueriesResult([
         SearchByOneQueryResult(Query({'lorem'}, set()),
@@ -40,16 +40,16 @@ def test_search(search_engine, norm_cwd):
 
 def test_search_with_robot_txt(search_engine, norm_cwd):
     test_files = norm_cwd / 'test_files'
-    search_engine.build_index(test_files, 'robot.txt')
+    search_engine.build_index(str(test_files), 'robot.txt')
     expected_files = {test_files / 'c.txt', test_files / 'd.txt'}
     assert set(search_engine.index.documents) == expected_files
 
 
 def test_save_load(search_engine, norm_cwd):
-    tests_folder = norm_cwd / 'test_files'
-    search_engine.build_index(tests_folder, '')
+    test_files = norm_cwd / 'test_files'
+    search_engine.build_index(str(test_files), '')
     search_engine.save_index()
-    index_path = norm_cwd / 'index'
+    index_path = norm_cwd / 'search_index'
     assert index_path.exists()
     index = dataclasses.replace(search_engine.index)
     search_engine.index = None
