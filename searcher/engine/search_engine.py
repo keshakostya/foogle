@@ -72,6 +72,9 @@ class SearchByOneQueryResult:
             hsh += hash(doc)
         return hsh
 
+    def is_empty(self) -> bool:
+        return bool(self.documents)
+
 
 @dataclass
 class SearchByManyQueriesResult:
@@ -257,7 +260,6 @@ class SearchEngine:
             raise RobotTxtNotFound(robot_txt)
         ignored = set()
         cwd = Path.cwd()
-        dirs = queue.Queue()
         with robot_txt_path.open('r') as f:
             while True:
                 line = f.readline()
@@ -269,14 +271,8 @@ class SearchEngine:
                     if not path.is_dir():
                         ignored.add(path)
                     else:
-                        dirs.put(path)
-        while not dirs.empty():
-            directory = dirs.get()
-            for path in directory.glob('*'):
-                if path.is_dir():
-                    dirs.put(path)
-                else:
-                    ignored.add(path)
+                        for path1 in path.rglob('*'):
+                            ignored.add(path1)
         return ignored
 
     @staticmethod

@@ -24,36 +24,12 @@ input[type=reset] {
     float: right;
 }
 
-form {
-    padding: 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    width: 100%;
-}
-
 #index-exist-buttons {
     margin-bottom: 20px;
 }
 
-#index-status {
-    padding: 12px 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    width: 100%;
-}
-
 a {
     text-decoration: none;
-}
-
-#search-block, #index-block {
-    width: 100%;
-    padding: 10px 10px;
-    margin: 20px 0;
 }
 
 #footer-block {
@@ -62,4 +38,19 @@ a {
 
 #footer-block a {
     margin: 0 20px;
+}
+
+.search-result {
+    max-height: 500px;
+    overflow-y: scroll;
+    margin: 20px 0;
+}
+
+.box {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 20px;
 }

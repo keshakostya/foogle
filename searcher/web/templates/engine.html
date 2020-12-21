@@ -15,7 +15,7 @@
         </a>
     </div>
     <h3>Or create new</h3>
-    <form method="POST" action="build_index" id="index-create-form">
+    <form class="box" method="POST" action="build_index" id="index-create-form">
         <label for="root-dir">Root directory of your index:</label>
         <input required placeholder="Root directory" type="text" id="root-dir"
                name="root_dir">
@@ -29,12 +29,12 @@
         <input type="reset" value="Clear" class="danger">
     </form>
     {% if index_status %}
-    <p id="index-status">{{ index_status }}</p>
+    <p class="box" id="index-status">{{ index_status }}</p>
     {% endif %}
 </div>
 <div id="search-block">
     <h2>Search</h2>
-    <form method="POST" action="search" id="search-form">
+    <form class="box" method="POST" action="search" id="search-form">
         <label for="query">Your query:</label>
         <input required placeholder="Query" type="text" id="query"
                name="query">
