@@ -13,6 +13,5 @@ def parse_args():
     return parser.parse_args().__dict__
 
 
-if __name__ == '__main__':
-    args = parse_args()
-    run_server(**args)
+args = parse_args()
+run_server(**args)

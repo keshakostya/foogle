@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 import pytest
 
@@ -13,21 +12,13 @@ def controller():
     return Controller()
 
 
-@pytest.fixture
-def norm_cwd() -> Path:
-    cwd = Path.cwd()
-    if not cwd.name == 'test':
-        os.chdir('test')
-    return Path.cwd()
-
-
-def test_controller(controller, norm_cwd):
-    test_files_path = norm_cwd / 'test_files'
-    res = controller.execute('build_index', 'test_files')
+def test_controller(controller):
+    test_files_path = Path.cwd() / 'test_files'
+    res = controller.execute('build_index', str(test_files_path))
     assert res == f'Index built for "{test_files_path}"'
     res = controller.execute('save_index')
     assert res == f'Index for {test_files_path} saved'
-    index_path = norm_cwd / 'search_index'
+    index_path = Path.cwd() / 'search_index'
     assert index_path.exists()
     res = controller.execute('load_index')
     assert res == f'Index for {test_files_path} loaded'

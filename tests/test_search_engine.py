@@ -1,5 +1,4 @@
 import dataclasses
-import os
 from pathlib import Path
 
 import pytest
@@ -12,21 +11,13 @@ from foogle.engine.errors import IndexNotExistError, IndexEmptyError, \
 
 
 @pytest.fixture
-def norm_cwd() -> Path:
-    cwd = Path.cwd()
-    if not cwd.name == 'test':
-        os.chdir('test')
-    return Path.cwd()
-
-
-@pytest.fixture
 def search_engine():
     engine = SearchEngine()
     return engine
 
 
-def test_search(search_engine, norm_cwd):
-    test_files = norm_cwd / 'test_files'
+def test_search(search_engine):
+    test_files = Path.cwd() / 'test_files'
     search_engine.build_index(str(test_files), '')
     results = search_engine.search('lorem || lingues')
     expected = SearchByManyQueriesResult([
@@ -38,18 +29,18 @@ def test_search(search_engine, norm_cwd):
     assert results == expected
 
 
-def test_search_with_robot_txt(search_engine, norm_cwd):
-    test_files = norm_cwd / 'test_files'
+def test_search_with_robot_txt(search_engine):
+    test_files = Path.cwd() / 'test_files'
     search_engine.build_index(str(test_files), 'robot.txt')
     expected_files = {test_files / 'c.txt', test_files / 'd.txt'}
     assert set(search_engine.index.documents) == expected_files
 
 
-def test_save_load(search_engine, norm_cwd):
-    test_files = norm_cwd / 'test_files'
+def test_save_load(search_engine):
+    test_files = Path.cwd() / 'test_files'
     search_engine.build_index(str(test_files), '')
     search_engine.save_index()
-    index_path = norm_cwd / 'search_index'
+    index_path = Path.cwd() / 'search_index'
     assert index_path.exists()
     index = dataclasses.replace(search_engine.index)
     search_engine.index = None
